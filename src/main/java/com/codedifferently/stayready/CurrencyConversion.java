@@ -10,12 +10,12 @@ public class CurrencyConversion {
     //We should be able to use convert currency like this:
     // fromUSD(toUSD(amount,curr1), curr2) -> fromUSD(toUSD(150,GBP), INR)
 
-    public double fromUSD(double toUSDAmount, String curr2){
-        return toUSDAmount * convRates.get(curr2);
-    }
-
     public double toUSD(double originalAmount, String curr1){
         return originalAmount/convRates.get(curr1);
+    }
+
+    public double fromUSD(double toUSDAmount, String curr2){
+        return toUSDAmount * convRates.get(curr2);
     }
 
     public void initRateMap(){

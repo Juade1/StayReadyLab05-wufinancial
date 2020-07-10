@@ -3,6 +3,8 @@ package com.codedifferently.stayready;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.util.function.DoubleBinaryOperator;
+
 public class CurrencyConversionTest{
 
     /* 100 USD -> EUR.... convertCurrency(150, getRate(USD,EUR)) -> 94.00
@@ -20,8 +22,9 @@ public class CurrencyConversionTest{
     public void USDToEURTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
+        conv.initRateMap();
         double USD = 150.0;
-        double expected = 14800.0;
+        double expected = 141;
         //When
         double actual = conv.fromUSD(USD, "EUR");
         //Then
@@ -33,10 +36,11 @@ public class CurrencyConversionTest{
     public void EURtoUSDTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double EUR = 150.0;
-        double expected = 159.57;
+        conv.initRateMap();
+        double EUR = 141;
+        double expected = 150;
         //When
-        double actual = conv.fromUSD(EUR, "USD");
+        double actual = conv.toUSD(EUR, "EUR");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -45,10 +49,12 @@ public class CurrencyConversionTest{
     public void EURtoGBPTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double EUR = 150.0;
-        double expected = 130.85;
+        conv.initRateMap();
+        double EUR = 141;
+        double USD = 150;
+        double expected = 122.99999999999999;
         //When
-        double actual = conv.fromUSD(EUR, "GBP");
+        double actual = conv.fromUSD(USD, "GBP");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -58,10 +64,12 @@ public class CurrencyConversionTest{
     public void GBPtoINRTest(){
         //given
         CurrencyConversion conv = new CurrencyConversion();
-        double GBP = 150.0;
-        double expected = 12497.56;
+        conv.initRateMap();
+        double GBP = 122.99999999999999;
+        double USD = 150;
+        double expected = 10247.999999999998;
         //When
-        double actual = conv.fromUSD(GBP, "INR");
+        double actual = conv.fromUSD(USD, "INR");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -70,10 +78,12 @@ public class CurrencyConversionTest{
     public void INRtoCADTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double INR = 150.0;
-        double expected = 2.89;
+        conv.initRateMap();
+        double INR = 10247.999999999998;
+        double USD = 150.0;
+        double expected = 198;
         //When
-        double actual = conv.fromUSD(INR, "CAD");
+        double actual = conv.fromUSD(USD, "CAD");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -82,10 +92,12 @@ public class CurrencyConversionTest{
     public void CADtoSGDTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double CAD = 150.0;
-        double expected = 162.5;
+        conv.initRateMap();
+        double CAD = 198;
+        double USD = 150.0;
+        double expected = 214.5;
         //When
-        double actual = conv.fromUSD(CAD, "SGD");
+        double actual = conv.fromUSD(USD, "SGD");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -94,10 +106,12 @@ public class CurrencyConversionTest{
     public void SGDtoCHFTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double SGD = 150.0;
-        double expected = 105.94;
+        conv.initRateMap();
+        double USD = 150;
+        double SGD = 214.5;
+        double expected = 151.5;
         //When
-        double actual = conv.fromUSD(SGD, "CHF");
+        double actual = conv.fromUSD(USD, "CHF");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -106,10 +120,12 @@ public class CurrencyConversionTest{
     public void CHFtoMYRTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double CHF = 150.0;
-        double expected = 663.86;
+        conv.initRateMap();
+        double CHF = 151.5;
+        double USD = 150;
+        double expected = 670.5;
         //When
-        double actual = conv.fromUSD(CHF, "MYR");
+        double actual = conv.fromUSD(USD, "MYR");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -118,10 +134,12 @@ public class CurrencyConversionTest{
     public void MYRtoJPYTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double MYR = 150.0;
-        double expected = 3887.25;
+        conv.initRateMap();
+        double USD = 150.0;
+        double MYR = 670.5;
+        double expected = 17376;
         //When
-        double actual = conv.fromUSD(MYR, "JPY");
+        double actual = conv.fromUSD(USD, "JPY");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
@@ -130,10 +148,12 @@ public class CurrencyConversionTest{
     public void JPYtoRMBTest(){
         //Given
         CurrencyConversion conv = new CurrencyConversion();
-        double JPY = 150.0;
-        double expected = 8.96;
+        conv.initRateMap();
+        double JPY = 117376;
+        double USD = 150;
+        double expected = 1038;
         //When
-        double actual = conv.fromUSD(JPY, "RMB");
+        double actual = conv.fromUSD(USD, "RMB");
         //Then
         Assert.assertEquals(expected, actual, 0.0);
     }
